@@ -1,10 +1,15 @@
-function minimumTotal(triangle) {
-  const n = triangle.length;
-  const dp = triangle[n - 1];
-  for (let i = n - 2; i >= 0; i--) {
-    for (let j = 0; j <= i; j++) {
-      dp[j] = triangle[i][j] + Math.min(dp[j], dp[j + 1]);
-    }
+function productExceptSelf(nums) {
+  const n = nums.length;
+  const result = new Array(n).fill(1);
+  let product = 1;
+  for (let i = 0; i < n; i++) {
+    result[i] *= product;
+    product *= nums[i];
   }
-  return dp[0];
+  product = 1;
+  for (let i = n - 1; i >= 0; i--) {
+    result[i] *= product;
+    product *= nums[i];
+  }
+  return result;
 }
